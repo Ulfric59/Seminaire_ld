@@ -7,6 +7,10 @@ Puis par  installer les dépendances, les dépendances peuvent être installés 
 On crée ensuite l'utilisateur 
 
 
+L'execution nécessite de mettre le mot de passe utilisateur:
+"ansible-playbook -i inventory.ini playbook2.yml --ask-become-pass"
+
+
 
 
 # Seminaire_ld
