@@ -1,0 +1,29 @@
+- name: Deploiement des applications
+  hosts: all
+  become: yes
+  vars:
+    app_dir: /opt/myapp
+    virtualenv_dir: /opt/myapp/venv
+    repo_url: https://gist.github.com/thibaultserti/21456f4797100376f67443920e5d5145/archive/main.zip
+
+  tasks:
+    - name: Installer  Python et Unzip
+      apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - python3
+        - python3-venv
+        - python3-pip
+        - unzip
+
+    - name: Télécharger le code Github
+      get_url:
+        url: "{{ repo_url }}"
+        dest: /tmp/myapp.zip
+
+    - name: Creation de l'utilisateur
+      user:
+        name: lucien
+        shell: /bin/bash
+        create_home: yes
